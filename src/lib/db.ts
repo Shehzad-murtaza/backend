@@ -2,8 +2,8 @@
 import mongoose from 'mongoose';
 
 const connectDB = async (): Promise<void> => {
-  // MongoDB connection string
-  const mongoURI = 'mongodb+srv://ali:abc1234567@cluster0.xht8ahs.mongodb.net/zero-master';
+  // MongoDB connection string from .env.local
+  const mongoURI = process.env.MONGODB_URI;
 
   // Check if the connection string is defined
   if (!mongoURI) {
@@ -12,7 +12,7 @@ const connectDB = async (): Promise<void> => {
   }
 
   // Check if already connected
-  if (mongoose.connections[0].readyState) {
+  if (mongoose.connection.readyState) {
     console.log('Already connected to the database');
     return;
   }
