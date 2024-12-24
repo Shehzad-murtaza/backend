@@ -1,0 +1,88 @@
+"use client"; // Specify that this is a client component
+
+import React, { useState } from 'react';
+import axios from 'axios';
+import { useRouter } from 'next/navigation'; // Correct import
+import { toast } from 'react-toastify'; // No need to import ToastContainer here
+import 'react-toastify/dist/ReactToastify.css';
+
+const Signup = () => {
+  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const router = useRouter(); // Use useRouter from next/navigation
+
+  const handleSignup = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('/api/auth', {
+        action: 'signup',
+        email,
+        username,
+        password,
+      });
+      
+      toast.success(response.data.message); // Show success toast
+      router.push('/login'); // Redirect to login page after signup
+    } catch (error: unknown) {
+      // Check if the error is an AxiosError
+      if (axios.isAxiosError(error)) {
+        toast.error(error.response?.data?.message || "An error occurred"); // Show error toast
+      } else {
+        toast.error("An unknown error occurred"); // Fallback for other types of errors
+      }
+    }
+  };
+
+  return (
+    <div className="flex items-center justify-center min-h-screen bg-gray-900">
+      <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-xl">
+        <h1 className="text-3xl font-semibold text-center text-gray-800">Create an Account</h1>
+        <form onSubmit={handleSignup} className="space-y-6">
+          <div>
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="w-full p-4 text-gray-700 bg-gray-100 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50"
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              placeholder="Username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+              className="w-full p-4 text-gray-700 bg-gray-100 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50"
+            />
+          </div>
+          <div>
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              className="w-full p-4 text-gray-700 bg-gray-100 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50"
+            />
+          </div>
+          <button
+            type="submit"
+            className="w-full p-4 text-white bg-teal-600 rounded-md hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500 transition duration-200"
+          >
+            Signup
+          </button>
+        </form>
+        <p className="text-center text-gray-600">
+          Already have an account?{' '}
+          <a href="/login" className="text-teal-600 hover:underline">Login</a>
+        </p>
+      </div>
+    </div>
+  );
+};
+
+export default Signup;

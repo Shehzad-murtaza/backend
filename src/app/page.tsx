@@ -1,101 +1,68 @@
-import Image from "next/image";
+"use client"; // Specify that this is a client component
 
-export default function Home() {
+import React from 'react';
+import Link from 'next/link';
+
+const LandingPage = () => {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className="bg-gradient-to-r from-gray-900 to-black min-h-screen text-white">
+      {/* Hero Section */}
+      <section className="flex flex-col justify-center items-center text-center py-20">
+        <h1 className="text-5xl font-semibold mb-4">
+          Welcome to <span className="text-gray-400">MyApp</span>
+        </h1>
+        <p className="text-lg mb-6 max-w-lg mx-auto">
+          The best platform to manage your tasks, track your progress, and stay on top of your goals.
+        </p>
+        <Link href="/signup">
+          <button className="px-8 py-3 text-lg font-semibold bg-gray-700 rounded-lg hover:bg-gray-600 focus:outline-none transition duration-300">
+            Get Started
+          </button>
+        </Link>
+      </section>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      {/* Features Section */}
+      <section className="py-20 bg-gray-800">
+        <h2 className="text-4xl font-semibold text-center text-white mb-12">
+          Key Features
+        </h2>
+        <div className="flex justify-around items-center space-x-12">
+          <div className="text-center w-1/3">
+            <div className="mb-6">
+              <i className="fas fa-tasks text-6xl text-gray-400"></i>
+            </div>
+            <h3 className="text-2xl font-semibold mb-2">Task Management</h3>
+            <p>Organize your tasks and manage your day effectively with our simple interface.</p>
+          </div>
+
+          <div className="text-center w-1/3">
+            <div className="mb-6">
+              <i className="fas fa-chart-line text-6xl text-gray-400"></i>
+            </div>
+            <h3 className="text-2xl font-semibold mb-2">Progress Tracking</h3>
+            <p>Track your progress over time and see your improvements with our real-time analytics.</p>
+          </div>
+
+          <div className="text-center w-1/3">
+            <div className="mb-6">
+              <i className="fas fa-users text-6xl text-gray-400"></i>
+            </div>
+            <h3 className="text-2xl font-semibold mb-2">Team Collaboration</h3>
+            <p>Work together with your team, share tasks, and track group performance.</p>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      </section>
+
+      {/* Footer Section */}
+      <footer className="bg-gray-900 text-center py-6 mt-12">
+        <p className="text-sm">&copy; 2024 MyApp. All rights reserved.</p>
+        <div className="mt-4">
+          <Link href="/privacy" className="text-gray-400 hover:underline mr-4">Privacy Policy</Link>
+          <Link href="/terms" className="text-gray-400 hover:underline">Terms of Service</Link>
+        </div>
       </footer>
     </div>
   );
-}
+};
+
+export default LandingPage;
