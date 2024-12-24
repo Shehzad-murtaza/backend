@@ -1,6 +1,11 @@
 import mongoose from 'mongoose';
 
 const connectDB = async (): Promise<void> => {
+  if (!process.env.MONGODB_URI) {
+    console.error('MONGODB_URI is not defined');
+    process.exit(1); // Exit if the URI is not defined
+  }
+
   if (mongoose.connections[0].readyState) {
     console.log('Already connected to the database');
     return;
