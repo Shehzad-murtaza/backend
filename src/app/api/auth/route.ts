@@ -9,7 +9,7 @@ export async function POST(request: Request) {
     // Ensure database connection is established first
     await connectDB();
 
-    const { action, email, username, password } = await request.json();
+    const { action, email, fullName, password } = await request.json();
 
     if (action === 'signup') {
       const existingUser = await User.findOne({ email });
@@ -24,7 +24,7 @@ export async function POST(request: Request) {
 
       const newUser = new User({
         email,
-        username,
+        fullName,
         password: hashedPassword,
       });
 

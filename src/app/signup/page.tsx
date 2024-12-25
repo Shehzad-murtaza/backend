@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const Signup = () => {
   const [email, setEmail] = useState('');
-  const [username, setUsername] = useState('');
+  const [fullName, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const router = useRouter(); // Use useRouter from next/navigation
 
@@ -18,7 +18,7 @@ const Signup = () => {
       const response = await axios.post('/api/auth', {
         action: 'signup',
         email,
-        username,
+        fullName,
         password,
       });
       
@@ -53,7 +53,7 @@ const Signup = () => {
             <input
               type="text"
               placeholder="Username"
-              value={username}
+              value={fullName}
               onChange={(e) => setUsername(e.target.value)}
               required
               className="w-full p-4 text-gray-700 bg-gray-100 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50"

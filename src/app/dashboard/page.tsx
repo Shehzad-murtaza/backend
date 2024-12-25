@@ -7,7 +7,7 @@ import axios from 'axios';
 interface User {
   _id: string;
   email: string;
-  username: string;
+  fullName: string;
 }
 
 const Dashboard = () => {
@@ -56,7 +56,7 @@ const Dashboard = () => {
                   className={`border-b hover:bg-gray-700 ${index < 3 ? 'bg-gray-900' : ''}`}
                 >
                   <td className="py-3 px-6">{user.email}</td>
-                  <td className="py-3 px-6">{user.username}</td>
+                  <td className="py-3 px-6">{user.fullName}</td>
                 </tr>
               ))
             ) : (
